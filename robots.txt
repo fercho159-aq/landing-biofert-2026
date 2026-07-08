@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://landingbiofert.com.mx/sitemap.xml

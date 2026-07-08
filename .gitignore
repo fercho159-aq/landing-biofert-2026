@@ -1,0 +1,13 @@
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+
+# Dependencias / build (por si se agregan tooling en el futuro)
+node_modules/
+.vercel/
+*.log
