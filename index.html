@@ -37,6 +37,24 @@
   gtag('config', 'AW-18309023837');
 </script>
 
+<!-- Event snippet for Contacto conversion page -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18309023837/57YICNGTjM0cEN2QtppE',
+      'value': 1.0,
+      'currency': 'USD',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
 <!-- Datos estructurados: Clínica médica -->
 <script type="application/ld+json">
 {

@@ -28,12 +28,24 @@
   var waButtons = document.querySelectorAll('[data-wa]');
   Array.prototype.forEach.call(waButtons, function (el) {
     var context = el.getAttribute('data-context') || 'default';
-    el.setAttribute('href', buildLink(context));
+    var waLink = buildLink(context);
+    el.setAttribute('href', waLink);
     el.setAttribute('target', '_blank');
     el.setAttribute('rel', 'noopener nofollow');
 
     // Registro de conversión (compatible con Google Ads / GTM si están presentes).
-    el.addEventListener('click', function () {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      // Envía conversión a Google Ads (si gtag_report_conversion existe)
+      if (typeof window.gtag_report_conversion === 'function') {
+        gtag_report_conversion(waLink);
+      } else {
+        // Fallback: abre WhatsApp directamente si no hay gtag
+        window.open(waLink, '_blank');
+      }
+
+      // También registra en dataLayer
       if (window.dataLayer && typeof window.dataLayer.push === 'function') {
         window.dataLayer.push({ event: 'whatsapp_click', wa_context: context });
       }
